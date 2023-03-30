@@ -15,6 +15,7 @@ from .const import (
     DEVICE_TYPE_PURE_HOT_COOL_NEW,
     DEVICE_TYPE_PURE_HOT_COOL_LINK,
     DEVICE_TYPE_PURE_HUMIDIFY_COOL,
+    DEVICE_TYPE_PURE_HUMIDIFY_COOL_PH03,
     DEVICE_TYPE_PURIFIER_HUMIDIFY_COOL_FORMALDEHYDE,
     DEVICE_TYPE_PURIFIER_HOT_COOL,
 )
@@ -36,7 +37,7 @@ from .dyson_pure_cool import DysonPureCoolFormaldehyde
 from .dyson_pure_cool_link import DysonPureCoolLink
 from .dyson_pure_hot_cool import DysonPureHotCool
 from .dyson_pure_hot_cool_link import DysonPureHotCoolLink
-from .dyson_pure_humidify_cool import DysonPureHumidifyCool, DysonPurifierHumidifyCoolFormaldehyde
+from .dyson_pure_humidify_cool import DysonPureHumidifyCool, DysonPureHumidifyCoolPH03, DysonPurifierHumidifyCoolFormaldehyde
 from .utils import get_mqtt_info_from_wifi_info  # noqa: F401
 
 
@@ -69,6 +70,8 @@ def get_device(serial: str, credential: str, device_type: str) -> Optional[Dyson
         return DysonPureHotCool(serial, credential, device_type)
     if device_type == DEVICE_TYPE_PURE_HUMIDIFY_COOL:
         return DysonPureHumidifyCool(serial, credential, device_type)
+    if device_type == DEVICE_TYPE_PURE_HUMIDIFY_COOL_PH03:
+        return DysonPureHumidifyCoolPH03(serial, credential, device_type)
     if device_type == DEVICE_TYPE_PURIFIER_HUMIDIFY_COOL_FORMALDEHYDE:
         return DysonPurifierHumidifyCoolFormaldehyde(serial, credential, device_type)
     return None
